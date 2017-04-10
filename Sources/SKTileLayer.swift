@@ -478,7 +478,7 @@ open class TiledLayerObject: SKNode, SKTiledObject {
                 r = (tileWidth - tilemap.sideLengthX) / 2
                 h = tileHeight / 2
                 
-                pixelX -= r
+                pixelX -= (r / 2)
                 sectionX = pixelX / (r + s)
                 sectionY = pixelY / (h * 2)
                 

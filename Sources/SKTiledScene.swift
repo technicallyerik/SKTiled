@@ -76,8 +76,8 @@ open class SKTiledScene: SKScene, SKPhysicsContactDelegate, SKTiledSceneDelegate
     }
     
     deinit {
-        removeAllActions()
-        removeAllChildren()
+//        removeAllActions()
+//        removeAllChildren()
     }
     
     override open func sceneDidLoad() {

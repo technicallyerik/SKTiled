@@ -259,7 +259,7 @@ extension SKTiledSceneCamera {
             if lastLocation == nil { return }
             let location = recognizer.location(in: recognizer.view)
             let difference = CGPoint(x: location.x - lastLocation.x, y: location.y - lastLocation.y)
-            centerOn(scenePoint: CGPoint(x: Int(position.x - difference.x), y: Int(position.y - -difference.y)))
+            centerOn(scenePoint: CGPoint(x: Int(position.x - (difference.x * self.xScale)), y: Int(position.y - -(difference.y * self.yScale))))
             lastLocation = location
         }
     }

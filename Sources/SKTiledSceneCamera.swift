@@ -267,11 +267,23 @@ extension SKTiledSceneCamera {
             let location = recognizer.location(in: recognizer.view)
             let difference = CGPoint(x: location.x - lastLocation.x, y: location.y - lastLocation.y)
             
-            let newPositionX = position.x - (difference.x * self.xScale)
-            let newPositionY = position.y - -(difference.y * self.yScale)
+            var newPositionX = position.x - (difference.x * self.xScale)
+            if(newPositionX < maxPanX) {
+                newPositionX = maxPanX
+            }
+            if(newPositionX > minPanX) {
+                newPositionX = minPanX
+            }
             
-            centerOn(scenePoint: CGPoint(x: min(max(newPositionX, minPanX), maxPanX),
-                                         y: min(max(newPositionY, minPanY), maxPanY)))
+            var newPositionY = position.y - -(difference.y * self.yScale)
+            if(newPositionY < maxPanY) {
+                newPositionY = maxPanY
+            }
+            if(newPositionY > minPanY) {
+                newPositionY = minPanY
+            }
+            
+            centerOn(scenePoint: CGPoint(x: newPositionX, y: newPositionY))
             
             lastLocation = location
         }

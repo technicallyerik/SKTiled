@@ -33,6 +33,7 @@ open class SKTiledSceneCamera: SKCameraNode {
     open var allowMovement: Bool = true
     open var allowZoom: Bool = true
     open var allowRotation: Bool = false
+    open var panInsets: UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
     
     // zoom constraints
     private var minZoom: CGFloat = 0.2
@@ -248,7 +249,13 @@ extension SKTiledSceneCamera {
      - parameter recognizer: `UIPanGestureRecognizer` pan gesture recognizer.
     */
     open func cameraPanned(_ recognizer: UIPanGestureRecognizer) {
-        guard (self.scene != nil) else { return }
+        guard let scene = self.scene as? SKTiledScene else { return }
+        
+        let minPanX = scene.size.halfWidth - ((scene.tilemap.sizeInPoints.width / xScale) - scene.size.width) - panInsets.left
+        let maxPanX = scene.size.halfWidth + ((scene.tilemap.sizeInPoints.width / xScale) - scene.size.width) + panInsets.right
+        let minPanY = scene.size.halfHeight - ((scene.tilemap.sizeInPoints.height / yScale) - scene.size.height) - panInsets.bottom
+        let maxPanY = scene.size.halfHeight + ((scene.tilemap.sizeInPoints.height / yScale) - scene.size.height) + panInsets.top
+        
         if (recognizer.state == .began) {
             let location = recognizer.location(in: recognizer.view)
             lastLocation = location
@@ -256,9 +263,16 @@ extension SKTiledSceneCamera {
         
         if (recognizer.state == .changed) && (allowMovement == true) {
             if lastLocation == nil { return }
+            
             let location = recognizer.location(in: recognizer.view)
             let difference = CGPoint(x: location.x - lastLocation.x, y: location.y - lastLocation.y)
-            centerOn(scenePoint: CGPoint(x: Int(position.x - difference.x), y: Int(position.y - -difference.y)))
+            
+            let newPositionX = position.x - (difference.x * self.xScale)
+            let newPositionY = position.y - -(difference.y * self.yScale)
+            
+            centerOn(scenePoint: CGPoint(x: min(max(newPositionX, minPanX), maxPanX),
+                                         y: min(max(newPositionY, minPanY), maxPanY)))
+            
             lastLocation = location
         }
     }

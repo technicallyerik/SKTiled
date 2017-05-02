@@ -269,19 +269,37 @@ extension SKTiledSceneCamera {
             let difference = CGPoint(x: location.x - lastLocation.x, y: location.y - lastLocation.y)
             
             var newPositionX = position.x - (difference.x * self.xScale)
-            if(newPositionX < maxPanX) {
-                newPositionX = maxPanX
-            }
-            if(newPositionX > minPanX) {
-                newPositionX = minPanX
+            if(scene.tilemap.sizeInPoints.width / xScale < scene.size.width) {
+                if(newPositionX < maxPanX) {
+                    newPositionX = maxPanX
+                }
+                if(newPositionX > minPanX) {
+                    newPositionX = minPanX
+                }
+            } else {
+                if(newPositionX > maxPanX) {
+                    newPositionX = maxPanX
+                }
+                if(newPositionX < minPanX) {
+                    newPositionX = minPanX
+                }
             }
             
             var newPositionY = position.y - -(difference.y * self.yScale)
-            if(newPositionY < maxPanY) {
-                newPositionY = maxPanY
-            }
-            if(newPositionY > minPanY) {
-                newPositionY = minPanY
+            if(scene.tilemap.sizeInPoints.height / yScale < scene.size.height) {
+                if(newPositionY < maxPanY) {
+                    newPositionY = maxPanY
+                }
+                if(newPositionY > minPanY) {
+                    newPositionY = minPanY
+                }
+            } else {
+                if(newPositionY > maxPanY) {
+                    newPositionY = maxPanY
+                }
+                if(newPositionY < minPanY) {
+                    newPositionY = minPanY
+                }
             }
             
             centerOn(scenePoint: CGPoint(x: newPositionX, y: newPositionY))

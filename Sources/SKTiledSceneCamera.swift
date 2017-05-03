@@ -252,10 +252,10 @@ extension SKTiledSceneCamera {
     open func cameraPanned(_ recognizer: UIPanGestureRecognizer) {
         guard let scene = self.scene as? SKTiledScene else { return }
         
-        let minPanX = scene.size.halfWidth - ((scene.tilemap.sizeInPoints.width / xScale) - scene.size.width) - (panInsets.left * xScale)
-        let maxPanX = scene.size.halfWidth + ((scene.tilemap.sizeInPoints.width / xScale) - scene.size.width) + (panInsets.right * xScale)
-        let minPanY = scene.size.halfHeight - ((scene.tilemap.sizeInPoints.height / yScale) - scene.size.height) - (panInsets.bottom * yScale)
-        let maxPanY = scene.size.halfHeight + ((scene.tilemap.sizeInPoints.height / yScale) - scene.size.height) + (panInsets.top * yScale)
+        let minPanX = scene.size.halfWidth - (scene.tilemap.sizeInPoints.halfWidth - ((scene.size.width * xScale) / 2)) - (panInsets.left * xScale)
+        let maxPanX = scene.size.halfWidth + (scene.tilemap.sizeInPoints.halfWidth  - ((scene.size.width * xScale) / 2)) + (panInsets.right * xScale)
+        let minPanY = scene.size.halfHeight - (scene.tilemap.sizeInPoints.halfHeight  - ((scene.size.height * xScale) / 2)) - (panInsets.bottom * yScale)
+        let maxPanY = scene.size.halfHeight + (scene.tilemap.sizeInPoints.halfHeight - ((scene.size.height * xScale) / 2)) + (panInsets.top * yScale)
         
         if (recognizer.state == .began) {
             let location = recognizer.location(in: recognizer.view)
@@ -269,7 +269,7 @@ extension SKTiledSceneCamera {
             let difference = CGPoint(x: location.x - lastLocation.x, y: location.y - lastLocation.y)
             
             var newPositionX = position.x - (difference.x * self.xScale)
-            if(scene.tilemap.sizeInPoints.width / xScale < scene.size.width) {
+            if(scene.tilemap.sizeInPoints.width / xScale < scene.size.width - (panInsets.left + panInsets.right)) {
                 if(newPositionX < maxPanX) {
                     newPositionX = maxPanX
                 }
@@ -286,7 +286,7 @@ extension SKTiledSceneCamera {
             }
             
             var newPositionY = position.y - -(difference.y * self.yScale)
-            if(scene.tilemap.sizeInPoints.height / yScale < scene.size.height) {
+            if(scene.tilemap.sizeInPoints.height / yScale < scene.size.height - (panInsets.top + panInsets.bottom)) {
                 if(newPositionY < maxPanY) {
                     newPositionY = maxPanY
                 }

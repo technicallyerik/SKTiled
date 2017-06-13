@@ -57,8 +57,6 @@
 		4C88E1E71D8A4EBE00FCCFA3 /* SKTileObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88E1D91D8A4EBE00FCCFA3 /* SKTileObject.swift */; };
 		4C88E1E81D8A4EBE00FCCFA3 /* SKTileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88E1DA1D8A4EBE00FCCFA3 /* SKTileset.swift */; };
 		4C88E1EA1D8A4EBE00FCCFA3 /* SKTilesetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88E1DC1D8A4EBE00FCCFA3 /* SKTilesetData.swift */; };
-		4C8E42E01DC26FD1002C76DA /* zlib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E42DF1DC26FD1002C76DA /* zlib */; };
-		4C8E42E11DC26FD1002C76DA /* zlib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E42DF1DC26FD1002C76DA /* zlib */; };
 		4CA3DA0E1D8AF07C001E165A /* DemoFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CA3DA0D1D8AF07C001E165A /* DemoFiles.plist */; };
 		4CAFDA4D1E20326D006F2D83 /* SKTiled+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88E1D71D8A4EBE00FCCFA3 /* SKTiled+Extensions.swift */; };
 		4CAFDA4E1E20326E006F2D83 /* SKTiled+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88E1D71D8A4EBE00FCCFA3 /* SKTiled+Extensions.swift */; };
@@ -99,8 +97,6 @@
 
 /* Begin PBXFileReference section */
 		4C0E59501DC046E700921F75 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
-		4C0EE1E51DC116DB00A052E4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		4C0EE1E71DC116E300A052E4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		4C17747F1D909740000C0AFD /* SKTiledDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKTiledDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C440B981DAE911000DEC9A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C440B9A1DAE911000DEC9A4 /* SKTiledDemoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTiledDemoScene.swift; sourceTree = "<group>"; };
@@ -130,7 +126,6 @@
 		4C88E1D91D8A4EBE00FCCFA3 /* SKTileObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTileObject.swift; sourceTree = "<group>"; };
 		4C88E1DA1D8A4EBE00FCCFA3 /* SKTileset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTileset.swift; sourceTree = "<group>"; };
 		4C88E1DC1D8A4EBE00FCCFA3 /* SKTilesetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTilesetData.swift; sourceTree = "<group>"; };
-		4C8E42DF1DC26FD1002C76DA /* zlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zlib; sourceTree = SOURCE_ROOT; };
 		4CA3DA0D1D8AF07C001E165A /* DemoFiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DemoFiles.plist; sourceTree = "<group>"; };
 		4CBA61651D8A048200B31FC1 /* SKTiledDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKTiledDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CBA617E1D8A0A3900B31FC1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -182,32 +177,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C0A864B1DECC1BA008EF817 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				4C0EE1E51DC116DB00A052E4 /* libz.tbd */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		4C0A864C1DECC1C0008EF817 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				4C0EE1E71DC116E300A052E4 /* libz.tbd */,
-			);
-			name = macOS;
-			sourceTree = "<group>";
-		};
-		4C0E59511DC053CA00921F75 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				4C0A864C1DECC1C0008EF817 /* macOS */,
-				4C0A864B1DECC1BA008EF817 /* iOS */,
-			);
-			name = Libraries;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		4C440B971DAE911000DEC9A4 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,16 +230,6 @@
 			path = framework;
 			sourceTree = "<group>";
 		};
-		4C6480BE1DC1231C006F4CB3 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				4C0E59511DC053CA00921F75 /* Libraries */,
-				4C8E42DF1DC26FD1002C76DA /* zlib */,
-			);
-			name = Modules;
-			path = Sources;
-			sourceTree = "<group>";
-		};
 		4C7A77AA1DA6A21A0018A55D /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,7 +251,6 @@
 			children = (
 				4CBA617E1D8A0A3900B31FC1 /* README.md */,
 				4C0E59501DC046E700921F75 /* CHANGELOG.md */,
-				4C6480BE1DC1231C006F4CB3 /* Modules */,
 				4CBA61931D8A0A6C00B31FC1 /* Sources */,
 				4CBA617F1D8A0A4600B31FC1 /* Resources */,
 				4C440B971DAE911000DEC9A4 /* Shared */,
@@ -522,7 +480,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C8E42E11DC26FD1002C76DA /* zlib in Resources */,
 				4C1774AC1D90999C000C0AFD /* roguelike-16x16-anim.png in Resources */,
 				4C1774A21D90999C000C0AFD /* hex1-65x65.tmx in Resources */,
 				4C1774A71D90999C000C0AFD /* staggered-64x33.tmx in Resources */,
@@ -547,7 +504,6 @@
 				4CFEA35D1D8D04320055C150 /* hex1-65x65.tmx in Resources */,
 				4CBA61831D8A0A4600B31FC1 /* roguelike-16x16-anim.png in Resources */,
 				4C88E1AB1D8A241F00FCCFA3 /* ortho4-16x16.tmx in Resources */,
-				4C8E42E01DC26FD1002C76DA /* zlib in Resources */,
 				4C88E18C1D8A1BC400FCCFA3 /* roguelike-16x16.tmx in Resources */,
 				4C440B9B1DAE911000DEC9A4 /* Assets.xcassets in Resources */,
 				4C88E1AD1D8A242F00FCCFA3 /* ortho4-16x16.png in Resources */,
@@ -817,7 +773,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lz";
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = zlib;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -859,7 +815,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lz";
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = zlib;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

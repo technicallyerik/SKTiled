@@ -82,13 +82,13 @@ public func flippedTileFlags(id: UInt32) -> (gid: UInt32, hflip: Bool, vflip: Bo
 // MARK: - Extensions
 
 extension Bool {
-    init<T : Integer>(_ integer: T) {
+    init<T : BinaryInteger>(_ integer: T) {
         self.init(integer != 0)
     }
 }
 
 
-extension Integer {
+extension BinaryInteger {
     init(_ bool: Bool) {
         self = bool ? 1 : 0
     }

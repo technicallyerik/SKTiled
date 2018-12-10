@@ -34,7 +34,7 @@ open class SKTiledSceneCamera: SKCameraNode {
     open var allowZoom: Bool = true
     open var allowRotation: Bool = false
     open var allowPause: Bool = true
-    open var panInsets: UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+    open var panInsets: UIEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
     
     // zoom constraints
     private var minZoom: CGFloat = 0.2
@@ -249,7 +249,7 @@ extension SKTiledSceneCamera {
      
      - parameter recognizer: `UIPanGestureRecognizer` pan gesture recognizer.
     */
-    open func cameraPanned(_ recognizer: UIPanGestureRecognizer) {
+    @objc open func cameraPanned(_ recognizer: UIPanGestureRecognizer) {
         guard let scene = self.scene as? SKTiledScene else { return }
         
         let minPanX = (scene.size.halfWidth * zoom) - (scene.tilemap.sizeInPoints.halfWidth * zoom - ((scene.size.width * xScale) / 2)) - (panInsets.left * xScale)
@@ -313,8 +313,8 @@ extension SKTiledSceneCamera {
      
      - parameter recognizer: `UITapGestureRecognizer` tap gesture recognizer.
      */
-    open func sceneDoubleTapped(_ recognizer: UITapGestureRecognizer) {
-        if (recognizer.state == UIGestureRecognizerState.ended && allowPause) {
+    @objc open func sceneDoubleTapped(_ recognizer: UITapGestureRecognizer) {
+        if (recognizer.state == UIGestureRecognizer.State.ended && allowPause) {
             //focusLocation = recognizer.location(in: recognizer.view)
             guard let scene = self.scene as? SKTiledScene else { return }
             // get the current point
@@ -328,7 +328,7 @@ extension SKTiledSceneCamera {
      
      - parameter recognizer: `UIPinchGestureRecognizer`
      */
-    open func scenePinched(_ recognizer: UIPinchGestureRecognizer) {
+    @objc open func scenePinched(_ recognizer: UIPinchGestureRecognizer) {
         guard let scene = self.scene else { return }
         
         if recognizer.state == .began {

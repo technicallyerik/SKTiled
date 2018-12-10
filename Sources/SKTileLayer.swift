@@ -891,7 +891,7 @@ open class SKTileLayer: TiledLayerObject {
      - returns: `[SKTile]` array of tiles.
      */
     open func getTiles() -> [SKTile] {
-        return tiles.flatMap { $0 }
+        return tiles.compactMap { $0 }
     }
 
     /**
@@ -1258,7 +1258,7 @@ open class SKTileLayer: TiledLayerObject {
     open func setShader(named: String, uniforms: [SKUniform]=[]) {
         let shader = SKShader(fileNamed: named)
         shader.uniforms = uniforms
-        for tile in tiles.flatMap({$0}) {
+        for tile in tiles.compactMap({$0}) {
             tile.shader = shader
         }
     }
@@ -1479,7 +1479,7 @@ open class SKObjectGroup: TiledLayerObject {
      */
     open func objectNames() -> [String] {
         // flatmap will ignore nil name values.
-        return objects.flatMap({$0.name})
+        return objects.compactMap({$0.name})
     }
     
     /**
@@ -1714,7 +1714,7 @@ open class SKGroupLayer: TiledLayerObject {
      - returns: `[String]` layer names.
      */
     open func layerNames() -> [String] {
-        return layers.flatMap { $0.name }
+        return layers.compactMap { $0.name }
     }
     
     /**
@@ -1981,7 +1981,7 @@ public extension SKTileLayer {
      - returns: `[SKTile]` array of tiles.
      */
     public func validTiles() -> [SKTile] {
-        return tiles.flatMap({$0})
+        return tiles.compactMap({$0})
     }
     
     /// Returns a count of valid tiles.

@@ -595,7 +595,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `[String]` layer names.
      */
     open func layerNames() -> [String] {
-        return layers.flatMap { $0.name }
+        return layers.compactMap { $0.name }
     }
     
     /**
@@ -1203,7 +1203,7 @@ extension SKTilemap {
      - returns: `Bool` column should be staggered.
      */
     internal func doStaggerX(_ x: Int) -> Bool {
-        return staggerX && Bool((x & 1) ^ staggerEven.hashValue)
+        return staggerX && Bool((x & 1) ^ (staggerEven ? 1 : 0))
     }
     
     /**
@@ -1213,7 +1213,7 @@ extension SKTilemap {
      - returns: `Bool` row should be staggered.
      */
     internal func doStaggerY(_ y: Int) -> Bool {
-        return !staggerX && Bool((y & 1) ^ staggerEven.hashValue)
+        return !staggerX && Bool((y & 1) ^ (staggerEven ? 1 : 0))
     }
     
     internal func topLeft(_ x: CGFloat, _ y: CGFloat) -> CGPoint {

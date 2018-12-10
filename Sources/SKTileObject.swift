@@ -315,8 +315,8 @@ open class SKTileObject: SKShapeNode, SKTiledObject {
         var coordinates: [[CGFloat]] = []
         let pointsArray = points.components(separatedBy: " ")
         for point in pointsArray {
-            let coords = point.components(separatedBy: ",").flatMap { x in Double(x) }
-            coordinates.append(coords.flatMap { CGFloat($0) })
+            let coords = point.components(separatedBy: ",").compactMap { x in Double(x) }
+            coordinates.append(coords.compactMap { CGFloat($0) })
         }
         addPoints(coordinates)
     }

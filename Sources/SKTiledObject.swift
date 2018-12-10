@@ -128,7 +128,7 @@ public extension SKTiledObject {
      */
     public func integerArrayForKey(_ key: String, separatedBy: String=",") -> [Int] {
         if let value = properties[key] {
-            return  value.components(separatedBy: separatedBy).flatMap { Int($0) }
+            return  value.components(separatedBy: separatedBy).compactMap { Int($0) }
         }
         return [Int]()
     }
@@ -153,7 +153,7 @@ public extension SKTiledObject {
      */
     public func doubleArrayForKey(_ key: String, separatedBy: String=",") -> [Double] {
         if let value = properties[key] {
-            return value.components(separatedBy: separatedBy).flatMap { Double($0) }
+            return value.components(separatedBy: separatedBy).compactMap { Double($0) }
         }
         return [Double]()
     }

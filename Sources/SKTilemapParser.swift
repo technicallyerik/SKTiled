@@ -553,8 +553,8 @@ open class SKTilemapParser: NSObject, XMLParserDelegate {
                 var coordinates: [[CGFloat]] = []
                 let points = pointsString.components(separatedBy: " ")
                 for point in points {
-                    let coords = point.components(separatedBy: ",").flatMap { x in Double(x) }
-                    coordinates.append(coords.flatMap { CGFloat($0) })
+                    let coords = point.components(separatedBy: ",").compactMap { x in Double(x) }
+                    coordinates.append(coords.compactMap { CGFloat($0) })
                 }
                 
                 if let objectsgroup = lastElement as? SKObjectGroup {
@@ -574,8 +574,8 @@ open class SKTilemapParser: NSObject, XMLParserDelegate {
                 var coordinates: [[CGFloat]] = []
                 let points = pointsString.components(separatedBy: " ")
                 for point in points {
-                    let coords = point.components(separatedBy: ",").flatMap { x in Double(x) }
-                    coordinates.append(coords.flatMap { CGFloat($0) })
+                    let coords = point.components(separatedBy: ",").compactMap { x in Double(x) }
+                    coordinates.append(coords.compactMap { CGFloat($0) })
                 }
                 
                 if let objectsgroup = lastElement as? SKObjectGroup {

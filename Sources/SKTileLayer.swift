@@ -783,7 +783,7 @@ open class TiledLayerObject: SKNode, SKTiledObject {
         physicsBody?.isDynamic = isDynamic
     }
     
-    override open var hashValue: Int {
+    override open var hash: Int {
         return self.uuid.hashValue
     }
     
@@ -1390,7 +1390,7 @@ open class SKObjectGroup: TiledLayerObject {
      - returns: `SKTileObject?` added object.
      */
     open func addObject(_ object: SKTileObject, withColor: SKColor? = nil) -> SKTileObject? {
-        if objects.contains( where: { $0.hashValue == object.hashValue } ) {
+        if objects.contains( where: { $0.hash == object.hash } ) {
             return nil
         }
         

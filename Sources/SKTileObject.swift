@@ -371,7 +371,7 @@ open class SKTileObject: SKShapeNode, SKTiledObject {
 
 
 extension SKTileObject {
-    override open var hashValue: Int { return id.hashValue }
+    override open var hash: Int { return id.hashValue }
     
     /// Tile data description.
     override open var description: String {

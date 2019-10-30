@@ -18,7 +18,7 @@ import SpriteKit
  - parameter cameraNode: `SKTiledSceneCamera!` scene camera node.
  - parameter tilemap:    `SKTilemap!` tile map node.
  */
-public protocol SKTiledSceneDelegate {
+@objc public protocol SKTiledSceneDelegate {
     /** 
      World container node. All Tiled assets are parented to this node.
     */

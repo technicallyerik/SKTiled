@@ -41,7 +41,7 @@ public class SKTile: SKSpriteNode {
     open var physicsShape: PhysicsShape = .rectangle    // physics type
     
     /// Opacity value of the tile
-    open var opacity: CGFloat {
+    @objc open var opacity: CGFloat {
         get { return self.alpha }
         set { self.alpha = newValue }
     }

@@ -245,7 +245,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
     /** 
     The tile map default base layer, used for displaying the current grid, getting coordinates, etc.
     */
-    lazy open var baseLayer: SKTileLayer = {
+    @objc lazy open var baseLayer: SKTileLayer = {
         let layer = SKTileLayer(layerName: "Base", tilemap: self)
         self.addLayer(layer, base: true)
         layer.didFinishRendering()

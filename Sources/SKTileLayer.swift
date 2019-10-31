@@ -790,7 +790,7 @@ open class TiledLayerObject: SKNode, SKTiledObject {
     // MARK: - Debugging
     open func debugLayer() {
         /* override in subclass */
-        let comma = propertiesString.characters.count > 0 ? ", " : ""
+        let comma = propertiesString.count > 0 ? ", " : ""
         print("Layer: \(name != nil ? "\"\(name!)\"" : "null")\(comma)\(propertiesString)")
     }
 }
@@ -1390,7 +1390,7 @@ open class SKObjectGroup: TiledLayerObject {
      - returns: `SKTileObject?` added object.
      */
     open func addObject(_ object: SKTileObject, withColor: SKColor? = nil) -> SKTileObject? {
-        if objects.contains( where: { $0.hash == object.hash } ) {
+        if objects.contains( where: { $0.hashValue == object.hashValue } ) {
             return nil
         }
         

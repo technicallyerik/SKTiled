@@ -375,7 +375,7 @@ extension SKTileObject {
     
     /// Tile data description.
     override open var description: String {
-        let comma = propertiesString.characters.count > 0 ? ", " : ""
+        let comma = propertiesString.count > 0 ? ", " : ""
         return "Object: \(id), \(name ?? "null")\(comma)\(propertiesString)"
     }
     

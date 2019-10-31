@@ -343,7 +343,7 @@ public extension SKColor {
         var int = UInt32()
         Scanner(string: hex).scanHexInt32(&int)
         let a, r, g, b: UInt32
-        switch hex.characters.count {
+        switch hex.count {
         case 3: // RGB (12-bit)
             (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
         case 6: // RGB (24-bit)
@@ -418,7 +418,7 @@ public extension String {
         
     /// Returns `Int` length of the string.
     var length: Int {
-        return self.characters.count
+        return self.count
     }
     
     /**
@@ -441,7 +441,7 @@ public extension String {
      */
     func zfill(length: Int, pattern: String="0", padLeft: Bool=true) -> String {
         var filler = ""
-        let padamt: Int = length - characters.count > 0 ? length - characters.count : 0
+        let padamt: Int = length - count > 0 ? length - count : 0
         if padamt <= 0 { return self }
         for _ in 0..<padamt {
             filler += pattern
@@ -457,7 +457,7 @@ public extension String {
      */
     func pad(_ toSize: Int) -> String {
         // current string length
-        let currentLength = self.characters.count
+        let currentLength = self.count
         if (toSize < 1) { return self }
         if (currentLength >= toSize) { return self }
         var padded = self

@@ -1310,11 +1310,11 @@ extension SKTilemap {
             return
         }
         
-        let largestName = layerNames().max() { (a, b) -> Bool in a.characters.count < b.characters.count }
+        let largestName = layerNames().max() { (a, b) -> Bool in a.count < b.count }
         
         // format the header
         let tilemapHeaderString = "# Tilemap \"\(name != nil ? name! : "null")\": \(tileCount) Tiles: \(layerCount) Layers"
-        let filled = String(repeating: "-", count: tilemapHeaderString.characters.count)
+        let filled = String(repeating: "-", count: tilemapHeaderString.count)
         print("\n\(tilemapHeaderString)\n\(filled)")
         
         // create an array of layers to output
@@ -1328,7 +1328,7 @@ extension SKTilemap {
             let indexString = "\(layer.index): ".zfill(length: 3, pattern: " ", padLeft: false)
             
             // format the layer name
-            let layerNameString = "\(layer.layerType.stringValue.capitalized.zfill(length: 7, pattern: " ", padLeft: false)) \(nameString.zfill(length: largestName!.characters.count + 3, pattern: " ", padLeft: false))"
+            let layerNameString = "\(layer.layerType.stringValue.capitalized.zfill(length: 7, pattern: " ", padLeft: false)) \(nameString.zfill(length: largestName!.count + 3, pattern: " ", padLeft: false))"
             let positionString = "pos: \(layer.position.roundTo(1)), size: \(layer.sizeInPoints.roundTo(1))"
             let offsetString = "offset: \(layer.offset.roundTo(1)), anc: \(layer.anchorPoint.roundTo()), z: \(Int(layer.zPosition))"
 

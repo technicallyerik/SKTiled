@@ -14,7 +14,7 @@ public extension SKTilemap {
     /**
      Parse properties from the Tiled TMX file.
      */
-    public func parseProperties(completion: (() -> ())?) {
+    func parseProperties(completion: (() -> ())?) {
         for (attr, value) in properties {
             
             if (attr == "name") {
@@ -131,7 +131,7 @@ public extension SKTileset {
     /**
      Parse the tileset's properties value.
      */
-    public func parseProperties(completion: (() -> ())?) {
+    func parseProperties(completion: (() -> ())?) {
         if completion != nil { completion!() }
     }
 }
@@ -142,7 +142,7 @@ public extension TiledLayerObject {
     /**
      Parse the layer's properties value.
      */
-    @objc public func parseProperties(completion: (() -> ())?) {
+    @objc func parseProperties(completion: (() -> ())?) {
         
         for (attr, value) in properties {
             
@@ -186,7 +186,7 @@ public extension TiledLayerObject {
      - parameter name: `String` property name.     
      - returns: `String?` the property value, or nil if it does not exist.
      */
-    public func getValue(forProperty name: String) -> String? {
+    func getValue(forProperty name: String) -> String? {
         return properties[name]
     }
     
@@ -196,7 +196,7 @@ public extension TiledLayerObject {
      - parameter name:  `String` property name.
      - parameter value: `String` property value.
      */
-    public func setValue(_ value: String, forProperty name: String) {
+    func setValue(_ value: String, forProperty name: String) {
         properties[name] = value
     }
 }
@@ -207,7 +207,7 @@ public extension SKTileLayer {
     /**
      Parse the tile layer's properties.
     */
-    override public func parseProperties(completion: (() -> ())?) {
+    override func parseProperties(completion: (() -> ())?) {
         super.parseProperties(completion: completion)
     }
 }
@@ -218,7 +218,7 @@ public extension SKObjectGroup {
     /**
      Parse the object group's properties.
     */
-    override public func parseProperties(completion: (() -> ())?) {
+    override func parseProperties(completion: (() -> ())?) {
         for (attr, _ ) in properties {
             if (attr == "lineWidth") {
                 lineWidth = (doubleForKey(attr) != nil) ? CGFloat(doubleForKey(attr)!) : lineWidth
@@ -235,7 +235,7 @@ public extension SKImageLayer {
     /**
      Parse the image layer's properties.
     */
-    override public func parseProperties(completion: (() -> ())?) {
+    override func parseProperties(completion: (() -> ())?) {
         super.parseProperties(completion: completion)
     }
 }
@@ -246,7 +246,7 @@ public extension SKTileObject {
     /**
      Parse the object's properties value.
      */
-    public func parseProperties(completion: (() -> ())?) {
+    func parseProperties(completion: (() -> ())?) {
         for (attr, value) in properties {
             if (attr == "color") {
                 setColor(hexString: value)
@@ -273,7 +273,7 @@ public extension SKTilesetData {
     /**
      Parse the tile data's properties value.
      */
-    public func parseProperties(completion: (() -> ())?) {        
+    func parseProperties(completion: (() -> ())?) {        
         if completion != nil { completion!() }
     }
 }

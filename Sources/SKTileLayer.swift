@@ -1980,12 +1980,12 @@ public extension SKTileLayer {
      
      - returns: `[SKTile]` array of tiles.
      */
-    public func validTiles() -> [SKTile] {
+    func validTiles() -> [SKTile] {
         return tiles.compactMap({$0})
     }
     
     /// Returns a count of valid tiles.
-    public var tileCount: Int {
+    var tileCount: Int {
         return self.validTiles().count
     }
 }

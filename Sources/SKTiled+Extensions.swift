@@ -102,7 +102,7 @@ internal extension CGFloat {
      
      - returns: `CGFloat`
      */
-    internal func radians() -> CGFloat {
+    func radians() -> CGFloat {
         let b = CGFloat(Double.pi) * (self/180)
         return b
     }
@@ -114,7 +114,7 @@ internal extension CGFloat {
      - parameter v2: `CGFloat` min value.
      - returns: `CGFloat` clamped result.
      */
-    internal func clamped(_ minv: CGFloat, _ maxv: CGFloat) -> CGFloat {
+    func clamped(_ minv: CGFloat, _ maxv: CGFloat) -> CGFloat {
         let min = minv < maxv ? minv : maxv
         let max = minv > maxv ? minv : maxv
         return self < min ? min : (self > max ? max : self)
@@ -127,7 +127,7 @@ internal extension CGFloat {
      - parameter v2: `CGFloat` min value.
      - returns: `CGFloat` clamped result.
      */
-    internal mutating func clamp(_ minv: CGFloat, _ maxv: CGFloat) -> CGFloat {
+    mutating func clamp(_ minv: CGFloat, _ maxv: CGFloat) -> CGFloat {
         self = clamped(minv, maxv)
         return self
     }
@@ -138,7 +138,7 @@ internal extension CGFloat {
      - parameter decimals: `Int` number of decimals to round to.
      - returns: `String` rounded display string.
      */
-    internal func roundTo(_ decimals: Int=2) -> String {
+    func roundTo(_ decimals: Int=2) -> String {
         return String(format: "%.\(String(decimals))f", self)
     }
     
@@ -147,7 +147,7 @@ internal extension CGFloat {
      
      - returns: `CGFloat` rounded value.
      */
-    internal func roundToHalf() -> CGFloat {
+    func roundToHalf() -> CGFloat {
         let scaled = self * 10.0
         let result = scaled - (scaled.truncatingRemainder(dividingBy: 5))
         return result.rounded() / 10
@@ -158,7 +158,7 @@ internal extension CGFloat {
 public extension CGPoint {
     
     /// Returns an point inverted in the Y-coordinate.
-    public var invertedY: CGPoint {
+    var invertedY: CGPoint {
         return CGPoint(x: self.x, y: self.y * -1)
     }
     
@@ -168,31 +168,31 @@ public extension CGPoint {
      - parameter decimals: `Int` decimals to round to.
      - returns: `String` display string.
      */
-    public func roundTo(_ decimals: Int=1) -> String {
+    func roundTo(_ decimals: Int=1) -> String {
         return "x: \(self.x.roundTo(decimals)), y: \(self.y.roundTo(decimals))"
     }
     
     /// Return a vector int (for GameplayKit)
-    public var toVec2: int2 {
+    var toVec2: int2 {
         return int2(Int32(x), Int32(y))
     }
     
-    public var xCoord: Int { return Int(x) }
-    public var yCoord: Int { return Int(y) }
+    var xCoord: Int { return Int(x) }
+    var yCoord: Int { return Int(y) }
     
-    public var description: String { return "x: \(x.roundTo()), y: \(y.roundTo())" }
-    public var coordDescription: String { return "x: \(Int(x)), y: \(Int(y))" }
+    var description: String { return "x: \(x.roundTo()), y: \(y.roundTo())" }
+    var coordDescription: String { return "x: \(Int(x)), y: \(Int(y))" }
 }
 
 
 public extension CGSize {
     
-    public var count: Int { return Int(width) * Int(height) }    
-    public var halfSize: CGSize { return CGSize(width: width / 2, height: height / 2) }
-    public var halfWidth: CGFloat { return width / 2.0 }
-    public var halfHeight: CGFloat { return height / 2.0 }
+    var count: Int { return Int(width) * Int(height) }
+    var halfSize: CGSize { return CGSize(width: width / 2, height: height / 2) }
+    var halfWidth: CGFloat { return width / 2.0 }
+    var halfHeight: CGFloat { return height / 2.0 }
     
-    public func roundTo(_ decimals: Int=1) -> String {
+    func roundTo(_ decimals: Int=1) -> String {
         return "w: \(self.width.roundTo(decimals)), h: \(self.height.roundTo(decimals))"
     }
 }
@@ -201,33 +201,33 @@ public extension CGSize {
 public extension CGRect {
     
     /// Initialize with a center point and size.
-    public init(center: CGPoint, size: CGSize) {
+    init(center: CGPoint, size: CGSize) {
         self.origin = CGPoint(x: center.x - size.width / 2.0, y: center.y - size.height / 2.0)
         self.size = size
     }
     
-    public var center: CGPoint {
+    var center: CGPoint {
         return CGPoint(x: self.midX, y: self.midY)
     }
     
-    public var topLeft: CGPoint {
+    var topLeft: CGPoint {
         return origin
     }
     
-    public var topRight: CGPoint {
+    var topRight: CGPoint {
         return CGPoint(x: origin.x + size.width, y: origin.y)
     }
     
-    public var bottomLeft: CGPoint {
+    var bottomLeft: CGPoint {
         return CGPoint(x: origin.x, y: origin.y + size.height)
     }
     
-    public var bottomRight: CGPoint {
+    var bottomRight: CGPoint {
         return CGPoint(x: origin.x + size.width, y: origin.y + size.height)
     }
     
     /// Returns the points of the four corners.
-    public var points: [CGPoint] {
+    var points: [CGPoint] {
         return [topLeft, topRight, bottomRight, bottomLeft]
     }
 }
@@ -237,7 +237,7 @@ public extension CGVector {
     /**
      * Returns the squared length of the vector described by the CGVector.
      */
-    public func lengthSquared() -> CGFloat {
+    func lengthSquared() -> CGFloat {
         return dx*dx + dy*dy
     }
 }
@@ -247,14 +247,14 @@ public extension SKScene {
     /**
      Returns the center point of a scene.
      */
-    public var center: CGPoint {
+    var center: CGPoint {
         return CGPoint(x: (size.width / 2) - (size.width * anchorPoint.x), y: (size.height / 2) - (size.height * anchorPoint.y))
     }
     
     /**
      Calculate the distance from the scene's origin
      */
-    public func distanceFromOrigin(_ pos: CGPoint) -> CGVector {
+    func distanceFromOrigin(_ pos: CGPoint) -> CGVector {
         let dx = (pos.x - center.x)
         let dy = (pos.y - center.y)
         return CGVector(dx: dx, dy: dy)
@@ -267,7 +267,7 @@ internal extension SKNode {
     /**
      Position the node by a percentage of the view size.
      */
-    internal func posByCanvas(x: CGFloat, y: CGFloat) {
+    func posByCanvas(x: CGFloat, y: CGFloat) {
         guard let scene = scene else { return }
         guard let view = scene.view else { return }
         self.position = scene.convertPoint(fromView: (CGPoint(x: CGFloat(view.bounds.size.width * x), y: CGFloat(view.bounds.size.height * (1.0 - y)))))
@@ -280,7 +280,7 @@ internal extension SKNode {
      - parameter withKey:            `String!` action key.
      - parameter optionalCompletion: `() -> ()` optional completion function.
      */
-    internal func run(_ action: SKAction!, withKey: String!, optionalCompletion block: (()->())?) {
+    func run(_ action: SKAction!, withKey: String!, optionalCompletion block: (()->())?) {
         if let block = block {
             let completionAction = SKAction.run( block )
             let compositeAction = SKAction.sequence([ action, completionAction ])
@@ -338,7 +338,7 @@ public extension SKColor {
      - parameter hexString:  `String` hexidecimal code.
      - returns: `SKColor`
      */
-    convenience public init(hexString: String) {
+    convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
         Scanner(string: hex).scanHexInt32(&int)
@@ -367,7 +367,7 @@ public extension SKColor {
      
      - returns: `String` hexadecimal string.
      */
-    public func hexString() -> String {
+    func hexString() -> String {
         let comps = components
         let r = Int(comps[0] * 255)
         let g = Int(comps[1] * 255)
@@ -417,7 +417,7 @@ public extension SKColor {
 public extension String {
         
     /// Returns `Int` length of the string.
-    public var length: Int {
+    var length: Int {
         return self.characters.count
     }
     
@@ -427,7 +427,7 @@ public extension String {
      - parameter pattern: `String` pattern to split string with.
      - returns: `[String]` groups of split strings.
      */
-    public func split(_ pattern: String) -> [String] {
+    func split(_ pattern: String) -> [String] {
         return self.components(separatedBy: pattern)
     }
     
@@ -439,7 +439,7 @@ public extension String {
      - parameter padLeft: `Bool` toggle this to pad the right.
      - returns: `String` padded string.
      */
-    public func zfill(length: Int, pattern: String="0", padLeft: Bool=true) -> String {
+    func zfill(length: Int, pattern: String="0", padLeft: Bool=true) -> String {
         var filler = ""
         let padamt: Int = length - characters.count > 0 ? length - characters.count : 0
         if padamt <= 0 { return self }
@@ -455,7 +455,7 @@ public extension String {
      - parameter toSize: `Int` size of resulting string.
      - returns: `String` padded string.
      */
-    public func pad(_ toSize: Int) -> String {
+    func pad(_ toSize: Int) -> String {
         // current string length
         let currentLength = self.characters.count
         if (toSize < 1) { return self }
@@ -474,7 +474,7 @@ public extension String {
      - parameter replaceWith: replacement `String`.
      - returns: `String` result.
      */
-    public func substitute(_ pattern: String, replaceWith: String) -> String {
+    func substitute(_ pattern: String, replaceWith: String) -> String {
         return self.replacingOccurrences(of: pattern, with: replaceWith)
     }
     
@@ -483,7 +483,7 @@ public extension String {
      
      - parameter bytes: `[UInt8]` byte array.
      */
-    public init(_ bytes: [UInt8]) {
+    init(_ bytes: [UInt8]) {
         self.init()
         for b in bytes {
             self.append(String(UnicodeScalar(b)))
@@ -495,7 +495,7 @@ public extension String {
      
      - returns: `String` scrubbed string.
      */
-    public func scrub() -> String {
+    func scrub() -> String {
         var scrubbed = self.replacingOccurrences(of: "\n", with: "")
         scrubbed = scrubbed.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         return scrubbed.replacingOccurrences(of: " ", with: "")
@@ -511,7 +511,7 @@ public extension SKAction {
      - parameter frames: `[(texture: SKTexture, duration: TimeInterval)]` array of tuples containing texture & duration.
      - returns: `SKAction` custom animation action.
      */
-    public class func tileAnimation(_ frames: [(texture: SKTexture, duration: TimeInterval)], repeatForever: Bool = true) -> SKAction {
+    class func tileAnimation(_ frames: [(texture: SKTexture, duration: TimeInterval)], repeatForever: Bool = true) -> SKAction {
         var actions: [SKAction] = []
         for frame in frames {
             actions.append(SKAction.group([
@@ -532,24 +532,24 @@ public extension SKAction {
 
 public extension Data {
     // init with a value
-    public init<T>(from value: T) {
+    init<T>(from value: T) {
         var value = value
         self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
     }
     
     // export back as value
-    public func to<T>(type: T.Type) -> T {
+    func to<T>(type: T.Type) -> T {
         return self.withUnsafeBytes { $0.pointee }
     }
     
     // init with array
-    public init<T>(fromArray values: [T]) {
+    init<T>(fromArray values: [T]) {
         var values = values
         self.init(buffer: UnsafeBufferPointer(start: &values, count: values.count))
     }
     
     // output to array
-    public func toArray<T>(type: T.Type) -> [T] {
+    func toArray<T>(type: T.Type) -> [T] {
         return self.withUnsafeBytes {
             [T](UnsafeBufferPointer(start: $0, count: self.count/MemoryLayout<T>.stride))
         }
@@ -1080,10 +1080,10 @@ public func bezierPath(_ points: [CGPoint], closed: Bool=true, alpha: CGFloat=0.
 public typealias CompressionLevel = Int32
 public extension CompressionLevel {
     
-    public static let noCompression = Z_NO_COMPRESSION
-    public static let bestSpeed = Z_BEST_SPEED
-    public static let bestCompression = Z_BEST_COMPRESSION    
-    public static let defaultCompression = Z_DEFAULT_COMPRESSION
+    static let noCompression = Z_NO_COMPRESSION
+    static let bestSpeed = Z_BEST_SPEED
+    static let bestCompression = Z_BEST_COMPRESSION
+    static let defaultCompression = Z_DEFAULT_COMPRESSION
 }
 
 
@@ -1207,7 +1207,7 @@ public extension Data {
      
      - returns: Whether the data is compressed.
      */
-    public var isGzipped: Bool {
+    var isGzipped: Bool {
         return self.starts(with: [0x1f, 0x8b])
     }
     
@@ -1216,7 +1216,7 @@ public extension Data {
      
      - returns: Whether the data is compressed.
      */
-    public var isZlibCompressed: Bool {
+    var isZlibCompressed: Bool {
         return self.starts(with: [0x78, 0x9C])
     }
     
@@ -1230,7 +1230,7 @@ public extension Data {
      - throws: `GzipError`
      - returns: Gzip-compressed `Data` object.
      */
-    public func gzipped(level: CompressionLevel = .defaultCompression) throws -> Data {
+    func gzipped(level: CompressionLevel = .defaultCompression) throws -> Data {
         
         guard self.count > 0 else {
             return Data()
@@ -1278,7 +1278,7 @@ public extension Data {
      - throws: `GzipError`
      - returns: Gzip-decompressed `Data` object.
      */
-    public func gunzipped() throws -> Data {
+    func gunzipped() throws -> Data {
         
         guard self.count > 0 else {
             return Data()

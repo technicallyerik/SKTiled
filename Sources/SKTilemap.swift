@@ -537,7 +537,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `SKTileset?` tileset object.
      */
     open func getTileset(named name: String) -> SKTileset? {
-        if let index = tilesets.index( where: { $0.name == name } ) {
+        if let index = tilesets.firstIndex( where: { $0.name == name } ) {
             let tileset = tilesets[index]
             return tileset
         }
@@ -551,7 +551,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `SKTileset?`
      */
     open func getTileset(fileNamed filename: String) -> SKTileset? {
-        if let index = tilesets.index( where: { $0.filename == filename } ) {
+        if let index = tilesets.firstIndex( where: { $0.filename == filename } ) {
             let tileset = tilesets[index]
             return tileset
         }
@@ -656,7 +656,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `TiledLayerObject?` layer object.
      */
     open func getLayer(named layerName: String) -> TiledLayerObject? {
-        if let index = layers.index( where: { $0.name == layerName } ) {
+        if let index = layers.firstIndex( where: { $0.name == layerName } ) {
             let layer = layers[index]
             return layer
         }
@@ -670,7 +670,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `TiledLayerObject?` layer object.
      */
     open func getLayer(withID uuid: String) -> TiledLayerObject? {
-        if let index = layers.index( where: { $0.uuid == uuid } ) {
+        if let index = layers.firstIndex( where: { $0.uuid == uuid } ) {
             let layer = layers[index]
             return layer
         }
@@ -684,7 +684,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `TiledLayerObject?` layer object.
      */
     open func getLayer(atIndex index: Int) -> TiledLayerObject? {
-        if let index = layers.index( where: { $0.index == index } ) {
+        if let index = layers.firstIndex( where: { $0.index == index } ) {
             let layer = layers[index]
             return layer
         }
@@ -726,7 +726,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `SKTileLayer?`
      */
     open func tileLayer(named name: String) -> SKTileLayer? {
-        if let layerIndex = tileLayers.index( where: { $0.name == name } ) {
+        if let layerIndex = tileLayers.firstIndex( where: { $0.name == name } ) {
             let layer = tileLayers[layerIndex]
             return layer
         }
@@ -740,7 +740,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `SKTileLayer?`
      */
     open func tileLayer(atIndex index: Int) -> SKTileLayer? {
-        if let layerIndex = tileLayers.index( where: { $0.index == index } ) {
+        if let layerIndex = tileLayers.firstIndex( where: { $0.index == index } ) {
             let layer = tileLayers[layerIndex]
             return layer
         }
@@ -754,7 +754,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `SKObjectGroup?`
      */
     open func objectGroup(named name: String) -> SKObjectGroup? {
-        if let layerIndex = objectGroups.index( where: { $0.name == name } ) {
+        if let layerIndex = objectGroups.firstIndex( where: { $0.name == name } ) {
             let layer = objectGroups[layerIndex]
             return layer
         }
@@ -768,7 +768,7 @@ open class SKTilemap: SKCropNode, SKTiledObject {
      - returns: `SKObjectGroup?`
      */
     open func objectGroup(atIndex index: Int) -> SKObjectGroup? {
-        if let layerIndex = objectGroups.index( where: { $0.index == index } ) {
+        if let layerIndex = objectGroups.firstIndex( where: { $0.index == index } ) {
             let layer = objectGroups[layerIndex]
             return layer
         }

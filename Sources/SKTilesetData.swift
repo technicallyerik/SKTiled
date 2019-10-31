@@ -108,7 +108,7 @@ open class SKTilesetData: SKTiledObject  {
      - returns: `AnimationFrame?` animation frame (if it exists).
      */
     func removeFrame(_ gid: Int) -> AnimationFrame? {
-        if let index = frames.index( where: { $0.gid == gid } ) {
+        if let index = frames.firstIndex( where: { $0.gid == gid } ) {
             return frames.remove(at: index)
         }
         return nil

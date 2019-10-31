@@ -1489,7 +1489,7 @@ open class SKObjectGroup: TiledLayerObject {
      - returns: `SKTileObject?`
      */
     open func getObject(withID id: Int) -> SKTileObject? {
-        if let index = objects.index( where: { $0.id == id } ) {
+        if let index = objects.firstIndex( where: { $0.id == id } ) {
             return objects[index]
         }
         return nil
@@ -1502,7 +1502,7 @@ open class SKObjectGroup: TiledLayerObject {
      - returns: `SKTileObject?`
      */
     open func getObject(named name: String) -> SKTileObject? {
-        if let index = objects.index( where: { $0.name == name } ) {
+        if let index = objects.firstIndex( where: { $0.name == name } ) {
             return objects[index]
         }
         return nil

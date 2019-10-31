@@ -202,6 +202,7 @@ public extension CGRect {
     
     /// Initialize with a center point and size.
     init(center: CGPoint, size: CGSize) {
+        self.init()
         self.origin = CGPoint(x: center.x - size.width / 2.0, y: center.y - size.height / 2.0)
         self.size = size
     }

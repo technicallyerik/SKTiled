@@ -282,7 +282,7 @@ open class SKTileset: SKTiledObject {
      */
     open func getTileData(_ gid: Int) -> SKTilesetData? {
         let id = getTileRealID(id: gid)
-        if let index = tileData.index( where: { $0.id == id } ) {
+        if let index = tileData.firstIndex( where: { $0.id == id } ) {
             return tileData[index]
         }
         return nil

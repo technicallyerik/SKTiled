@@ -173,8 +173,8 @@ public extension CGPoint {
     }
     
     /// Return a vector int (for GameplayKit)
-    var toVec2: int2 {
-        return int2(Int32(x), Int32(y))
+    var toVec2: SIMD2<Int32> {
+        return SIMD2<Int32>(Int32(x), Int32(y))
     }
     
     var xCoord: Int { return Int(x) }
@@ -535,25 +535,28 @@ public extension Data {
     // init with a value
     init<T>(from value: T) {
         var value = value
-        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+        var myData = Data()
+        withUnsafePointer(to:&value, { (ptr: UnsafePointer<T>) -> Void in
+            myData = Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
+        })
+        self.init(myData)
     }
     
     // export back as value
     func to<T>(type: T.Type) -> T {
-        return self.withUnsafeBytes { $0.pointee }
+        return self.withUnsafeBytes { $0.load(as: T.self) }
     }
     
     // init with array
     init<T>(fromArray values: [T]) {
-        var values = values
-        self.init(buffer: UnsafeBufferPointer(start: &values, count: values.count))
+        self = values.withUnsafeBytes { Data($0) }
     }
     
     // output to array
-    func toArray<T>(type: T.Type) -> [T] {
-        return self.withUnsafeBytes {
-            [T](UnsafeBufferPointer(start: $0, count: self.count/MemoryLayout<T>.stride))
-        }
+    func toArray<T>(type: T.Type) -> [T] where T: ExpressibleByIntegerLiteral {
+        var array = Array<T>(repeating: 0, count: self.count/MemoryLayout<T>.stride)
+        _ = array.withUnsafeMutableBytes { copyBytes(to: $0) }
+        return array
     }
 }
 

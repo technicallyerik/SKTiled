@@ -167,13 +167,14 @@ open class SKTiledSceneCamera: SKCameraNode {
      - parameter scenePoint: `CGPoint` point in scene.
      - parameter easeInOut:  `TimeInterval` ease in/out speed.
      */
-    open func centerOn(scenePoint point: CGPoint, duration: TimeInterval=0) {
+    open func centerOn(scenePoint point: CGPoint, duration: TimeInterval=0, finished: @escaping () -> Void) {
         if duration == 0 {
             position = point
+            finished()
         } else {
             let moveAction = SKAction.move(to: point, duration: duration)
             moveAction.timingMode = .easeOut
-            run(moveAction)
+            run(moveAction, completion: finished)
         }
     }
     
@@ -183,16 +184,17 @@ open class SKTiledSceneCamera: SKCameraNode {
      - parameter scenePoint: `SKNode` node in scene.
      - parameter easeInOut:  `TimeInterval` ease in/out speed.
      */
-    open func centerOn(_ node: SKNode, duration: TimeInterval = 0) {
+    open func centerOn(_ node: SKNode, duration: TimeInterval = 0, finished: @escaping () -> Void) {
         guard let scene = self.scene else { return }
         
         let nodePosition = scene.convert(node.position, from: node)
         if duration == 0 {
             position = nodePosition
+            finished()
         } else {
             let moveAction = SKAction.move(to: nodePosition, duration: duration)
             moveAction.timingMode = .easeOut
-            run(moveAction)
+            run(moveAction, completion: finished)
         }
     }
     
@@ -200,7 +202,7 @@ open class SKTiledSceneCamera: SKCameraNode {
      Reset the camera position & zoom level.
      */
     open func resetCamera() {
-        centerOn(scenePoint: CGPoint(x: 0, y: 0))
+        centerOn(scenePoint: CGPoint(x: 0, y: 0)) {}
         setCameraZoom(initialZoom)
     }
     
@@ -210,7 +212,7 @@ open class SKTiledSceneCamera: SKCameraNode {
      - parameter toScale: `CGFloat` camera scale.
      */
     open func resetCamera(toScale scale: CGFloat) {
-        centerOn(scenePoint: CGPoint(x: 0, y: 0))
+        centerOn(scenePoint: CGPoint(x: 0, y: 0)) {}
         setCameraZoom(scale)
     }
     
@@ -231,7 +233,7 @@ open class SKTiledSceneCamera: SKCameraNode {
         let currentWidth = tilemap.sizeInPoints.width
         
         let scaleFactor = (useableWidth / currentWidth)
-        centerOn(scenePoint: CGPoint(x: 0, y: 0))
+        centerOn(scenePoint: CGPoint(x: 0, y: 0)) {}
         setCameraZoom(scaleFactor)
         
         // flag the map as auto-resized
@@ -302,7 +304,7 @@ extension SKTiledSceneCamera {
                 }
             }
             
-            centerOn(scenePoint: CGPoint(x: newPositionX, y: newPositionY))
+            centerOn(scenePoint: CGPoint(x: newPositionX, y: newPositionY)) {}
             
             lastLocation = location
         }
@@ -334,7 +336,7 @@ extension SKTiledSceneCamera {
         if recognizer.state == .began {
             let location = recognizer.location(in: recognizer.view)
             focusLocation = scene.convertPoint(fromView: location)  // correct
-            centerOn(scenePoint: focusLocation)
+            centerOn(scenePoint: focusLocation) {}
         }
         
         if recognizer.state == .changed {
